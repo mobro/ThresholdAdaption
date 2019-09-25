@@ -11,9 +11,11 @@
               "-std=c++17",
               "-stdlib=libc++",
               "main.c",
+              "thresholdAdaption.c",
               "-o",
               "thresholdAdapt.out",
-              "--debug"
+              "--debug",
+              "-v"
             ],
             "group": {
               "kind": "build",

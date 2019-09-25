@@ -1,0 +1,17 @@
+{
+  "files.encoding": "ISO 8859-1",
+  "editor.fontSize": 14,
+  "editor.renderWhitespace": "all",
+  // The number of spaces a tab is equal to. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
+  "editor.tabSize": 2,
+  // Insert spaces when pressing Tab. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
+  "editor.insertSpaces": true,
+  // When opening a file, `editor.tabSize` and `editor.insertSpaces`
+  // will be detected based on the file contents. Set to false to keep
+  // the values you've explicitly set, above.
+  "editor.detectIndentation": false,
+  "files.associations": {
+    "errno.h": "c"
+  }
+  // ....other settings
+}
