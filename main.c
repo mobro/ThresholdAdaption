@@ -3,24 +3,41 @@
 #include <assert.h>
 #include "thresholdAdapt.h"
 
-static void TestThresholdAdaption(void);
+#define MEAS_RANGE 3000
+#define START_POSITION 2800
+#define OFFSET 300
+
+static void TestThreshold(void);
 
 int main(int argc, const char *argv[])
 {
   // Hello
   printf("\nHello World\n\n");
 
-  TestThresholdAdaption();
+  TestThreshold();
 }
 
-void TestThresholdAdaption(void)
+void TestThreshold(void)
 {
-  uint32_t u32Position = 2800;
-  uint32_t u32Offset = 300;
-  uint32_t u32MeasRange = 3000;
-  uint32_t u32Threshold = 0;
+  STTHRESHOLD stThreshold;
+  uint32_t u32MeasRange = MEAS_RANGE;
+  uint32_t u32ActPosition = START_POSITION;
   uint16_t u16Return = 0;
 
-  u16Return = AdaptThreshold(u32Position, u32Offset, u32MeasRange, &u32Threshold);
+  u16Return = InitThreshold(&stThreshold, u32MeasRange);
   assert(!(0 != u16Return));
+
+  stThreshold.stThresholdElement[FIRST_THRESHOLD].u32Offset = OFFSET;
+  stThreshold.stThresholdElement[FIRST_THRESHOLD].u32StartPosition = START_POSITION;
+
+  u16Return = SetThreshold(&stThreshold, FIRST_THRESHOLD);
+  assert(!(0 != u16Return));
+
+  while (true != stThreshold.stThresholdElement[FIRST_THRESHOLD].oTriggered)
+  {
+    u16Return = CheckThresholdTriggerd(&stThreshold, FIRST_THRESHOLD, u32ActPosition);
+    assert(!(0 != u16Return));
+
+    u32ActPosition = (u32ActPosition + 1) % MEAS_RANGE;
+  }
 }

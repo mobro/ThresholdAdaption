@@ -2,14 +2,14 @@
 
 // Includes *************************************************
 
-  #include "stdafx.h"
+//  #include "stdafx.h"
 
 
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 
-#include "thresholdAdaption.h"
+#include "thresholdAdapt.h"
 
 // Defines **************************************************
 
